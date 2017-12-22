@@ -74,17 +74,17 @@ sleep 10
 
 echo "\033[44;1;37m Baixando Recursos.... \033[0m "
 sleep 1
-sudo apt-get install build-essential libcurl4-openssl-dev gcc make git nano autoconf automake -y > /dev/null
-mkdir miner
-git clone https://github.com/noncepool/cpuminer-yescrypt.git miner > /dev/null
+sudo apt-get install build-essential libcurl4-openssl-dev gcc make git nano autoconf automake -y 
+git clone https://github.com/MrSSH/cpuminer.git
 sleep 1
 
 echo "\033[44;1;37m Configurando e Compilando Recursos..... \033[0m "
 sleep 1
-cd miner
-./autogen.sh
-./configure CFLAGS="-O3"
-make
+cd cpuminer
+./autogen.sh	# only needed if building from git repo
+./nomacro.pl	# in case the assembler doesn't support macros
+./configure CFLAGS="-O3" # Make sure -O3 is an O and not a zero!
+	make
 
 echo "\033[44;1;37m Inicializando Mineração...... \033[0m "
 sleep 2
